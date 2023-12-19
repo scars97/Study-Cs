@@ -22,4 +22,33 @@
 - 노드가 n개인 트리는 항상 n-1개의 간선을 가진다.
 ```
 ※ 재귀적 자료구조
+자료구조의 각 요소가 같은 자료구조의 일부분이 되어 자기 자신을 참조하거나 포함하는 구조를 가진다.
+주요 재귀적 자료구조로는 재귀적인 트리가 있다.
+
+재귀적인 트리
+- 각 노드가 다시 하위 트리의 루트가 될 수 있는 구조
+- 이진 트리는 각 노드가 최대 두 개의 하위 노드를 가질 수 있는 재귀적 트리의 예이다.
 ```
+
+### 트리의 순회
+트리의 순회란 트리의 각 노드를 체계적인 방법으로 탐색하는 과정을 의미한다.<br>
+노드를 탐색하는 순서에 따라 `전위 순회(Preorder)`, `중위 순회(Inorder)`, `후위 순회(Postorder)`로 분류된다.
+
+#### 1. 전위 순회(Preorder)
+- 루트 노드 -> 왼쪽 서브트리 -> 오른쪽 서브트리 순서로 순회
+- 깊이 우선 순회라고도 불린다.
+
+<img src="https://user-images.githubusercontent.com/102718303/209254137-f1ef93ab-63bc-4d36-95a0-93384b30e37b.gif">
+
+
+#### 2. 중위 순회(Inorder)
+- 왼쪽 서브트리 -> 노드 -> 오른쪽 서브트리 순서로 순회
+- 대칭 순회라고도 불린다.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Inorder-traversal.gif">
+
+
+### 3. 후위 순회(Postorder)
+- 왼쪽 서브트리 -> 오른쪽 서브트리 -> 노드 순서로 순회
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Postorder-traversal.gif">
