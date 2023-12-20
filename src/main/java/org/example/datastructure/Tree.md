@@ -52,3 +52,24 @@
 - 왼쪽 서브트리 -> 오른쪽 서브트리 -> 노드 순서로 순회
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Postorder-traversal.gif">
+
+---
+
+### 트리의 종류
+
+#### 1. 편향 트리 (Skew Tree)
+- 모든 노드들이 자식 노드를 하나씩만 가진 트리.
+- 왼쪽 방향으로만 자식을 가지면 Left Skew Tree, 오른쪽 방향으로만 자식을 가지면 Right Skew Tree라고 한다.
+
+<img src="https://user-images.githubusercontent.com/102718303/209174882-074b3284-eac8-435d-bcea-2e99740e9cb5.png">
+
+#### 2. 이진 트리 ((Binary Tree))
+이진트리는 각 노드의 자식 수가 2개 이하인 트리이다.
+
+![img.png](img/BinaryTree.png)
+
+#### 3. 이진 탐색 트리 (Binary Search Tree)
+- 정렬된, 순서화된 이진 트리이다.
+- 노드의 왼쪽 자식은 부모보다 작은 값, 오른쪽 자식은 부모보다 큰 값을 갖는다.
+
+![img.png](img/BinarySearchTree.png)
