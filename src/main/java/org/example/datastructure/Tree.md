@@ -64,7 +64,8 @@
 <img src="https://user-images.githubusercontent.com/102718303/209174882-074b3284-eac8-435d-bcea-2e99740e9cb5.png">
 
 #### 2. 이진 트리 ((Binary Tree))
-이진트리는 각 노드의 자식 수가 2개 이하인 트리이다.
+- 이진트리는 각 노드의 자식 수가 2개 이하인 트리이다.
+- 완전이진트리가 가장 많이 쓰인다.
 
 ![img.png](img/BinaryTree.png)
 
