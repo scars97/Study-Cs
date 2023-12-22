@@ -9,7 +9,7 @@
   - O(1)의 시간 복잡도를 가진다.
 - 고정된 크기(정적)를 가지며, 각 원소에 메모리 상에 연속적으로 저장된다.
 
-![img.png](img/Array.png)
+![img.png](img/list/Array.png)
 
 ---
 

@@ -30,11 +30,11 @@ class Node {
 
 ### Singly Linked List (단일 연결 리스트)
 각 노드가 데이터와 다음 노드를 가리키는 링크로 이루어져 있다.
-![img.png](img/SinglyLinkedList.png)
+![img.png](img/list/SinglyLinkedList.png)
 
 ### Doubly Linked List (이중 연결 리스트) 
 각 노드가 데이터, 이전 노드를 가리키는 링크, 다음 노드를 가리키는 링크로 이루어져 있다.
-![img.png](img/DoublyLinkedList.png)
+![img.png](img/list/DoublyLinkedList.png)
 
 ---
 

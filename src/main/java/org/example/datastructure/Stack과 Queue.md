@@ -12,7 +12,7 @@
 - Push : 데이터를 스택의 맨 위에 추가.
 - Pop : 스택의 맨 위에 있는 데이터를 제거.
 
-![img.png](img/Stack.png)
+![img.png](img/stackandqueue/Stack.png)
 
 ### + 장점
 - top 위치의 데이터에 바로 접근하므로 데이터 삽입, 삭제의 시간 복잡도가 O(1)로 빠르다.
@@ -33,7 +33,7 @@
 - Enqueue(삽입) : 큐의 뒤쪽(마지막)에 요소를 추가
 - Dequeue(제거) : 큐의 앞쪽(첫 번째)에서 요소를 제거
 
-![img.png](img/Queue.png)
+![img.png](img/stackandqueue/Queue.png)
 
 ### + 장점
 - front 위치의 데이터에 바로 접근하므로 데이터 삽입, 삭제의 시간 복잡도가 O(1)로 빠르다.

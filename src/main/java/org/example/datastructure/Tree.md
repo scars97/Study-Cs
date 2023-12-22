@@ -13,7 +13,7 @@
 - 깊이(depth) : 루트에서 어떤 노드까지의 간선 수로, 레벨(Level)이라고도 한다.
 - 높이(height) : 트리의 최대 깊이
 
-![img.png](img/Tree.png)
+![img.png](img/tree/Tree.png)
 
 ### 트리의 특징
 - 부모 자식 관계를 가지는 `계층형 자료구조`로, 방향성이 있으면, 모든 자식 노드는 하나의 부모 노드만 갖는다.
@@ -67,7 +67,7 @@
 - 이진트리는 각 노드의 자식 수가 2개 이하인 트리이다.
 - 완전이진트리가 가장 많이 쓰인다.
 
-![img.png](img/BinaryTree.png)
+![img.png](img/tree/BinaryTree.png)
 
 #### 3. 이진 탐색 트리 (Binary Search Tree)
 - 정렬된, 순서화된 이진 트리이다.
