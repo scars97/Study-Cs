@@ -73,7 +73,7 @@
 - 정렬된, 순서화된 이진 트리이다.
 - 노드의 왼쪽 자식은 부모보다 작은 값, 오른쪽 자식은 부모보다 큰 값을 갖는다.
 
-![img.png](img/BinarySearchTree.png)
+![img.png](img/binarysearch/BinarySearchTree.png)
 
 ### 트리의 활용
 - 계층적인 데이터 저장
