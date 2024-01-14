@@ -105,7 +105,10 @@ starvation은 여러 프로세스가 부족한 자원을 점유하기 위해 경
 실제 측정한 시간으로 예측하여 SJF를 사용할 수도 있지만, 이는 오버헤드가 매우 큰 작업으로 잘 사용되지 않는다.
 </blockquote>
 
-
-
-
-
+### 3. Prioriy
+- 우선순위가 높은 프로세스가 먼저 선택되는 스케줄링 알고리즘이다.
+- 우선순위는 정수값으로 나타내며, 작은 값이 우선순위가 높다.
+- 선점, 비선점 모두 가능하다.
+- 우선순위를 정하는 방법
+  - Internal : time limit, memory requirement, I/O to CPU burst(I/O작업은 길고, CPU 작업은 짧은 프로세스 우선) 등
+  - External : amount of funds being paid, political factors 등
