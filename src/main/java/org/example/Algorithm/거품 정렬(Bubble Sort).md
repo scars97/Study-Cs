@@ -11,3 +11,27 @@
 - 1회전을 수행하고 나면 가장 큰 원소가 맨 뒤로 이동하므로 2회전에서는 맨 끝에 있는 원소는 정렬에서 제외되고,
 - 2회전을 수행하고 나면 끝에서 두 번째 원소까지는 정렬에서 제외된다.
   - 이렇게 정렬을 1회전 수행할 때마다 정렬에서 제외되는 데이터가 하나씩 늘어난다.
+
+```java
+private static void sort(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+        for (int j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+              int temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+            }
+        }
+  
+        System.out.print((i + 1) + "단계 : ");
+        print(arr);
+    }
+}
+
+private static void print(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+        System.out.print(arr[i] + " ");
+    }
+    System.out.println();
+}
+```
