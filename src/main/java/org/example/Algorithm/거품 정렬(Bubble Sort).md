@@ -22,17 +22,9 @@ private static void sort(int[] arr) {
                 arr[j + 1] = temp;
             }
         }
-  
-        System.out.print((i + 1) + "단계 : ");
-        print(arr);
-    }
-}
 
-private static void print(int[] arr) {
-    for (int i = 0; i < arr.length; i++) {
-        System.out.print(arr[i] + " ");
+        System.out.println(Arrays.toString(arr));
     }
-    System.out.println();
 }
 ```
 - `첫 번째 for문`은 제외될 원소의 갯수를 의미한다.

@@ -1,15 +1,37 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class Main {
-    static int[] arr = {4,5,1,3,7,2,8,9,6};
+    static int[] arr = {7, 6, 2, 4, 3, 9, 1};
 
     public static void main(String[] args) {
-        sort();
+        //bubbleSort();
+        selectionSort();
     }
-    private static void sort() {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
+
+    // Selection Sort
+    private static void selectionSort() {
+        for (int i = 0; i < arr.length; i++) { // 1.
+            int standard = i;
+            for (int j = i + 1; j < arr.length; j++) { // 2.
+                if (arr[j] < arr[standard]) standard = j; // 3.
+            }
+
+            int temp = arr[standard];
+            arr[standard] = arr[i];
+            arr[i] = temp;
+
+            System.out.print((i + 1) + "단계 : ");
+            print(arr);
+        }
+    }
+
+    // Bobble Sort
+    private static void bubbleSort() {
+        for (int i = 0; i < arr.length; i++) { // 1.
+            for (int j = 0; j < arr.length - i - 1; j++) { // 2.
+                if (arr[j] > arr[j + 1]) { // 3.
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
@@ -27,4 +49,6 @@ public class Main {
         }
         System.out.println();
     }
+
+
 }
