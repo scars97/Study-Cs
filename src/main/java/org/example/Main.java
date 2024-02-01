@@ -6,8 +6,23 @@ public class Main {
     static int[] arr = {7, 6, 2, 4, 3, 9, 1};
 
     public static void main(String[] args) {
+        insertionSort();
+        //selectionSort();
         //bubbleSort();
-        selectionSort();
+    }
+
+    private static void insertionSort() {
+        for (int i = 1; i < arr.length; i++) {
+            int temp = arr[i];
+            int prev = i - 1;
+
+            while ((0 <= prev) && temp < arr[prev]) {
+                arr[prev + 1] = arr[prev];
+                prev--;
+            }
+            arr[prev + 1] = temp;
+        }
+        System.out.println(Arrays.toString(arr));
     }
 
     // Selection Sort
