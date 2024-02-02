@@ -12,3 +12,18 @@
 - 정렬은 2번째 위치의 값을 temp에 저장
 - temp와 이전에 있는 원소들과 비교하여 삽입
 - 1번으로 돌아가 다음 위치의 값을 temp에 저장하고 반복한다.
+```java
+private static void insertionSort() {
+    for (int i = 1; i < arr.length; i++) {
+        int temp = arr[i];
+        int prev = i - 1;
+
+        while ((0 <= prev) && temp < arr[prev]) {
+            arr[prev + 1] = arr[prev];
+            prev--;
+        }
+        arr[prev + 1] = temp;
+    }
+    System.out.println(Arrays.toString(arr));
+}
+```
