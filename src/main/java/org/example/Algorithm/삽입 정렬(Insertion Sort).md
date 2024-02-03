@@ -27,3 +27,13 @@ private static void insertionSort() {
     System.out.println(Arrays.toString(arr));
 }
 ```
+
+<img src="https://github.com/GimunLee/tech-refrigerator/raw/master/Algorithm/resources/insertion-sort-001.gif">
+
+### 시간복잡도
+- 최악의 경우(역으로 정렬되어 있을 경우), Selection Sort와 마찬가지로 O(n^2) 이다.
+- 하지만 모두 정렬이 되어있는 경우(Optimal), 한번씩 밖에 비교를 안하므로 O(n)의 시간복잡도를 가지게 된다.
+- 이미 정렬되어 있는 배열에 자료를 하나씩 삽입/제거하는 경우에는, 현실적으로 최고의 정렬 알고리즘이 되는데, 탐색을 제외한 오버헤드가 매우 적기 때문이다.
+
+### 공간복잡도
+- 주어진 배열 안에서 교환을 통해 정렬이 수행되므로 O(n)이다.
