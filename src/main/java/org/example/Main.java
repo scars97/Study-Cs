@@ -6,7 +6,8 @@ public class Main {
     static int[] arr = {7, 6, 2, 4, 3, 9, 1};
 
     public static void main(String[] args) {
-        insertionSort();
+        quickSort(arr, 0, arr.length - 1);
+        //insertionSort();
         //selectionSort();
         //bubbleSort();
     }
@@ -23,6 +24,11 @@ public class Main {
             while (a[pr] > x) pr--;
             if (pl <= pr) swap(a, pl++, pr--);
         } while (pl <= pr);
+
+        if (left < pr) quickSort(a, left, pr);
+        if (pl < right) quickSort(a, pl, right);
+
+        System.out.println(Arrays.toString(a));
     }
 
     private static void swap(int[] a, int idx1, int idx2) {
