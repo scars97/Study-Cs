@@ -11,11 +11,13 @@ public class Main {
         //bubbleSort();
     }
 
-    private static void quickSort(int[] a, int left, int right) {
+    // Quick Sort
+    static void quickSort(int[] a, int left, int right) {
         int pl = left;
         int pr = right;
         int x = a[(pl + pr) / 2];
 
+        // partition - 배열 그룹 분리
         do {
             while (a[pl] < x) pl++;
             while (a[pr] > x) pr--;
@@ -23,13 +25,14 @@ public class Main {
         } while (pl <= pr);
     }
 
-    static void swap(int[] a, int idx1, int idx2) {
+    private static void swap(int[] a, int idx1, int idx2) {
         int t = a[idx1];
         a[idx1] = a[idx2];
         a[idx2]= t;
     }
 
-    private static void insertionSort() {
+    // Insertion Sort
+    static void insertionSort() {
         for (int i = 1; i < arr.length; i++) {
             int temp = arr[i];
             int prev = i - 1;
@@ -44,7 +47,7 @@ public class Main {
     }
 
     // Selection Sort
-    private static void selectionSort() {
+    static void selectionSort() {
         for (int i = 0; i < arr.length; i++) { // 1.
             int standard = i;
             for (int j = i + 1; j < arr.length; j++) { // 2.
@@ -61,7 +64,7 @@ public class Main {
     }
 
     // Bobble Sort
-    private static void bubbleSort() {
+    static void bubbleSort() {
         for (int i = 0; i < arr.length; i++) { // 1.
             for (int j = 0; j < arr.length - i - 1; j++) { // 2.
                 if (arr[j] > arr[j + 1]) { // 3.
@@ -82,6 +85,4 @@ public class Main {
         }
         System.out.println();
     }
-
-
 }
