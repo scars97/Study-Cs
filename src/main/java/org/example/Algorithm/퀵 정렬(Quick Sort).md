@@ -7,7 +7,7 @@
 - Quick Sort는 불안정 정렬에 속하며, 다른 원소와의 비교만으로 정렬을 수행하는 비교 정렬에 속한다.
 - Merge Sort(병합 정렬)와는 달리 Quick Sort는 배열을 비균등하게 분할한다.
 
-### Process (Ascending)
+## Process (Ascending)
 - 배열 가운데서 하나의 원소를 고른다. 이렇게 고른 원소를 `피벗(pivot)` 이라고 한다.
 - 피벗 앞에는 피벗보다 값이 작은 모든 원소들이 오고, 피벗 뒤에는 피벗보다 값이 큰 모든 원소들이 오도록 피벗을 기준으로 배열을 둘로 나눈다.
   - 이렇게 배열을 둘로 나누는 것을 분할(Divide)이라고 한다. 분할을 마친 뒤에 피벗은 더 이상 움직이지 않는다.
@@ -60,6 +60,23 @@ a[pr] <= x 가 성립하는 요소를 찾을 때까지 pr을 왼쪽으로 스캔
   - 이 시도는 아무리 많아야 1회이므로 교환해도 괜찮다.
   - 이런 시도를 줄이기 위해 같은 요소를 교환하지 않는다면 요소를 교환하기 전에 pl,pr이 동일한 요소 위에 있는지를 매번 검사해야 하고, 이 비용이 훨씬 크다.
 
+### 재귀적인 퀵 정렬
 ```java
+static void quickSort(int[] a, int left, int right) {
+    int pl = left;
+    int pr = right;
+    int x = a[(pl + pr) / 2];
 
+    // partition - 배열 그룹 분리
+    do {
+        while (a[pl] < x) pl++;
+        while (a[pr] > x) pr--;
+        if (pl <= pr) swap(a, pl++, pr--);
+    } while (pl <= pr);
+
+    if (left < pr) quickSort(a, left, pr);
+    if (pl < right) quickSort(a, pl, right);
+
+    System.out.println(Arrays.toString(a));
+}
 ```
