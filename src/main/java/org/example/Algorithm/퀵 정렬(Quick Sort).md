@@ -80,3 +80,8 @@ static void quickSort(int[] a, int left, int right) {
     System.out.println(Arrays.toString(a));
 }
 ```
+
+## Quick Sort 개선
+- 정렬하고자 하는 배열이 오름차순 정렬되어있거나 내림차순 정렬되어있으면 O(n^2)의 시간 복잡도를 가진다.
+- 이때, 배열에서 가장 앞에 있는 값과 중간값을 교환해준다면 확률적으로나마 시간복잡도 O(nlog₂n)으로 개선할 수 있다.
+- 하지만, 이 방법으로 개선한다해도 Quick Sort의 최악의 시간 복잡도가 O(nlog₂n)가 되는 것은 아니다.
