@@ -11,8 +11,17 @@
 - 즉, 깊게 탐색하기 전에 넓게 탐색하는 것.
 - 큐를 사용한다.
 - 최소비용(모든 곳을 탐색하는 것보다 비용이 우선일 때)에 적합하다.
+- 시간복잡도
+  - 인접 행렬: O(V^2)
+  - 인접 리스트: O(V+E)
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif">
+
+[Code]
+```java
+
+```
+
 
 ## DFS
 - 깊이 우선 탐색이며 Depth-First Search 라고 부른다.
