@@ -20,6 +20,25 @@ public class LinkedList {
             current.next = newNode;
         }
     }
+
+    public void display() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " -> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+
+        list.add(10);
+        list.add(20);
+        list.add(30);
+
+        list.display();
+    }
 }
 
 class Node {
