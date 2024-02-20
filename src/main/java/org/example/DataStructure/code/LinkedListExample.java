@@ -1,9 +1,10 @@
 package org.example.DataStructure.code;
 
-public class LinkedList {
+
+public class LinkedListExample {
     private Node head;
 
-    public LinkedList() {
+    public LinkedListExample() {
         this.head = null;
     }
 
@@ -31,7 +32,7 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
+        LinkedListExample list = new LinkedListExample();
 
         list.add(10);
         list.add(20);
