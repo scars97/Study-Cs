@@ -36,3 +36,24 @@
 오른쪽 자식 index = (부모 index) * 2 + 1
 부모 index = (자식 index) / 2
 ```
+
+## 힙의 삽입
+- 힙에 새로운 요소가 들어오면, 일단 새로운 노드를 힙의 마지막 노드에 삽입
+- 새로운 노드를 부모 노드들과 교환
+```java
+void insert_max_heap(int x) {
+    
+    // 힙 크기를 하나 증가하고, 마지막 노드에 x를 넣음
+    maxHeap[++heapSize] = x;
+
+    for (int i = heapSize; i > 1; i /= 2) {
+        // 마지막 노드가 자신의 부모 노드보다 크면 swap
+        if (maxHeap[i/2] < maxHeap[i]) {
+            swap(i/2, i);
+        } else {
+            break;
+        }
+    }
+}
+```
+부모 노드는 자식 인덱스의 /2 이므로, 비교하고 자신이 더 크면 swap하는 방식
