@@ -57,3 +57,35 @@ void insert_max_heap(int x) {
 }
 ```
 부모 노드는 자식 인덱스의 /2 이므로, 비교하고 자신이 더 크면 swap하는 방식
+
+## 힙의 삭제
+- 최대 힙에서 최대값은 루트 노드이므로 루트 노드가 삭제됨
+  - 최대 힙에서 삭제 연산은 최대값 요소를 삭제하는 것
+- 삭제된 루트 노드에는 힙의 마지막 노드를 가져옴
+- 힙을 재구성
+```java
+int delete_max_heap() {
+    // 배열이 비어있으면 리턴
+    if (heapSize == 0) return 0;
+    
+    int item = maxHeap[1]; // 루트 노드의 값을 저장
+    maxHeap[1] = maxHeap[heapSize]; // 마지막 노드 값을 루트로 이동
+    maxHeap[heapSize--] = 0; // 힙 크기를 하나 줄이고 마지막 노드를 0으로 초기화
+
+    for (int i = 1; i*2 <=heapSize;) {
+        
+        // 마지막 노드가 왼쪽 노드와 오른쪽 노드보다 크면 종료
+        if (maxHeap[i] > maxHeap[i*2] && maxHeap[i] > maxHeap[i*2+1]) {
+            break;
+        } else if (maxHeap[i*2] > maxHeap[i*2+1]) {
+          // 왼쪽 노드가 더 큰 경우, swap
+          swap(i, i*2);
+        } else {
+            // 오른쪽 노드가 더 큰 경우
+            swap(i i*2+1);
+            i = i*2+1;
+        }
+    }
+    return item;
+}
+```
