@@ -13,6 +13,12 @@
   - 웹 + 모바일 웹
   - 아이폰, 안드로이드
 
+## REST
+- 자원지향구조(ROA)
+- 웹 사이트의 콘텐츠, DB 데이터 등을 전부 하나의 자원으로 파악
+  - 각 자원의 고유한 URI 부여
+  - 해당 자원에 대한 CRUD 작업을 HTTP의 기본 명령인 POST, GET, PUT, DELETE를 통해 처리
+
 ---
 #### 참고
 [REST API](https://private.tistory.com/28)
