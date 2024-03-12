@@ -28,7 +28,7 @@
 - 찾고자 하는 값이 루트 노드보다 작다면 왼쪽 서브 트리로 탐색 진행
 - 찾고자 하는 값이 루트 노드보다 크다면 오른쪽 서브 트리로 탐색 진행
 
-![img.png](img/binarysearch/Search.png)
+![img.png](img/tree/binarysearch/Search.png)
 
 #### 2. 삽입
 - 삽입을 위해서 먼저 탐색을 수행해야 한다.
@@ -36,7 +36,7 @@
   - 탐색에 실패한 위치가 새로운 노드를 삽입하는 위치가 되기 때문
 - 루트 노드부터 값을 비교하면서 삽입
 
-![img.png](img/binarysearch/Insert.png)
+![img.png](img/tree/binarysearch/Insert.png)
 
 #### 3. 삭제
 - 삭제할 노드가 리프 노드인 경우
@@ -44,10 +44,10 @@
 - 삭제할 노드가 자식을 한 개 가지고 있을 경우
   - 해당 노드를 삭제하고, 부모 노드와 삭제된 노드의 자식을 연결한다.
 
-![img.png](img/binarysearch/Delete_1.png)
+![img.png](img/tree/binarysearch/Delete_1.png)
 
 - 삭제할 노드가 자식을 두 개 가지고 있을 경우
   - 삭제할 노드의 오른쪽 서브트리에서 가장 작은 값을 가진 노드(또는 왼쪽 서브트리에서 가장 큰 값을 가진 노드)를 찾는다.
   - 찾은 노드를 삭제 대상 노드와 교체한다.
 
-![img.png](img/binarysearch/Delete_2.png)
+![img.png](img/tree/binarysearch/Delete_2.png)
