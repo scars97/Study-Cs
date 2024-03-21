@@ -1,5 +1,7 @@
 package org.example.Algorithm.test;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class Yosepus {
@@ -9,11 +11,12 @@ public class Yosepus {
         StringBuilder sb = new StringBuilder();
 
         int N = sc.nextInt();
-        int K = sc.nextInt();
+        //int K = sc.nextInt();
+
+        Queue<Integer> q = new LinkedList<>();
 
         for (int i = 1; i <= N; i++) {
-            int random = (int) (Math.random() * N) + 1;
-            System.out.println(random);
+            q.add(i);
         }
 
     }
