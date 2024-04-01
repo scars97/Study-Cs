@@ -150,3 +150,71 @@ Object 클래스가 없고, toString()과 같은 공통의 메서드가 없다�
 Object를 사용함으로써, 다형적 참조를 활용함으로써 모든 객체 인스턴스를 받을 수 있게 되고(추상화)
 
 공통으로 사용되는 toString() 메서드를 재정의하여 기능을 확장할 수 있다.
+
+---
+
+## equals()
+
+### 1.동일성과 동등성
+동등성 비교를 위한 equals()를 제공한다.
+
+**동일성(Identity)** : == 연산자를 사용해 두 객체의 참조가 동일한 객체를 가리키고 있는지 확인.<br>
+**동등성(Equality)** : equals()를 사용하여 두 객체가 논리적으로 동등한지 확인.
+
+Object가 제공하는 equals()는 기본적으로 == 으로 동일성 비교를 제공한다.
+```java
+public static void main(String[] args) {
+    UserV1 user1 = new UserV1("id-100");
+    UserV1 user2 = new UserV1("id-100");
+
+    System.out.println("identity = " + (user1 == user2)); // false
+    System.out.println("equality = " + (user1.equals(user2))); // false
+}
+```
+
+동일성 비교를 원한다면 equals()를 재정의해야 한다.
+
+### 2. 구현
+```java
+public class UserV2 {
+
+    private String id;
+
+    public UserV2(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        UserV2 user = (UserV2) o;
+        return id.equals(user.id);
+    }
+}
+
+public class Example {
+    public static void main(String[] args) {
+        UserV2 user1 = new UserV2("id-100");
+        UserV2 user2 = new UserV2("id-100");
+
+        System.out.println("identity = " + (user1 == user2)); //false
+        System.out.println("equality = " + user1.equals(user2)); // true
+    }
+}
+```
+
+### 정확한 equals()?
+아래의 규칙을 지켜야 한다.
+
+- 반사성(Reflexivity) 
+  - 객체는 자기 자신과 동등해야 한다. ( x.equals(x) 는 항상 true ).
+- 대칭성(Symmetry)
+  - 두 객체가 서로에 대해 동일하다고 판단하면, 이는 양방향으로 동일해야 한다.
+  ( x.equals(y) 가 true 이면 y.equals(x) 도 true ).
+- 추이성(Transitivity)
+  - 만약 한 객체가 두 번째 객체와 동일하고, 두 번째 객체가 세 번째 객체와 동일하다면, 첫
+  번째 객체는 세 번째 객체와도 동일해야 한다.
+- 일관성(Consistency)
+  - 두 객체의 상태가 변경되지 않는 한, equals() 메소드는 항상 동일한 값을 반환해야
+  한다.
+- null에 대한 비교
+  - 모든 객체는 null 과 비교했을 때 false 를 반환해야 한다
