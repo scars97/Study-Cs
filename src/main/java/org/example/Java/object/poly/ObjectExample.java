@@ -1,4 +1,4 @@
-package org.example.Java.object;
+package org.example.Java.object.poly;
 
 import org.example.Java.object.poly.Car;
 import org.example.Java.object.poly.Dog;
@@ -6,8 +6,8 @@ import org.example.Java.object.poly.Dog;
 public class ObjectExample {
 
     public static void main(String[] args) {
-        Object dog = new Dog();
-        Object car = new Car();
+        Dog dog = new Dog();
+        Car car = new Car();
         System.out.println(car);
 
         action(dog);
@@ -15,10 +15,10 @@ public class ObjectExample {
     }
 
     public static void action(Object obj) {
-        if (obj instanceof Dog dog) {
-            dog.sound();
-        } else if (obj instanceof Car car) {
-            car.move();
+        if (obj instanceof Dog) {
+            ((Dog) obj).sound();
+        } else if (obj instanceof Car) {
+            ((Car) obj).move();
         }
     }
 }

@@ -67,3 +67,22 @@ if (obj instanceof Dog dog) {
 - Object는 다형적 참조가 가능하지만 자식 인스턴스의 메서드는 가지고 있지 않다.
   - 메서드 오버라이딩이 불가능하며
   - 각 객체의 기능을 호출하려면 다운캐스팅이 필요하다.
+
+### Object 배열
+```java
+public static void main(String[] args) {
+    Dog dog = new Dog();
+    Car car = new Car();
+    Object obj = new Object();
+
+    Object[] objects = {dog, car, obj};
+
+    size(objects); // 3
+}
+```
+
+### Object가 없다면?
+- Object 배열과 같이 모든 객체를 받을 수 있는 메서드를 만들 수 없다.
+- 공통의 약속 없이 같은 기능을 하는 수많은 클래스가 만들어질 가능성 ↑
+
+---
