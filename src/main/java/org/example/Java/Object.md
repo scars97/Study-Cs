@@ -86,3 +86,52 @@ public static void main(String[] args) {
 - 공통의 약속 없이 같은 기능을 하는 수많은 클래스가 만들어질 가능성 ↑
 
 ---
+
+## toString()
+객체의 정보를 문자열 형태로 제공하며, 디버깅과 로깅에 유용하게 사용된다.
+
+패키지를 포함한 객체의 이름과 객체의 참조값(해시코드)을 16진수로 제공
+
+```java
+public static void main(String[] args) {
+    Object o = new Object();
+    String string = o.toString();
+
+    // toString() 반환값 출력
+    System.out.println(string);
+
+    // object 직접 출력
+    System.out.println(o);
+}
+```
+- 이때 toString()으로 출력한 것과 object를 직접 출력한 것의 값이 동일한데,
+- System.out.println()는 내부에서 toString()을 호출한다.
+```java
+public void println(Object x) {
+    String s = String.valueOf(x);
+    //...
+}
+
+public static String valueOf(Object obj) {
+    return (obj == null) ? "null" : obj.toString();
+}
+```
+
+### toString() 오버라이딩
+- 기본적으로 제공하는 클래스 정보와 참조값으로는 객체의 상태를 온전히 나타내지 못한다.
+- 보통 toString()을 재정의해서 보다 유용한 정보를 제공하는 것이 일반적.
+```java
+public static void main(String[] args) {
+    Dog dog = new Dog();
+    
+    // 재정의 x
+    System.out.println(dog); // java.lang.Dog@5594a1b5
+        
+    // 재정의    
+    System.out.println(dog); // Dog{dogName='멍멍이1', age=2}
+}
+```
+
+- Object 하위 클래스가 Object 타입을 받는 인수로 전달되고 toString()을 호출했을 때
+- 하위 클래스에 toString()이 재정의 되지않았다면 Object의 toString()을 사용하게 되고,
+- 재정의 되었다면 그 메서드를 실행한다.
