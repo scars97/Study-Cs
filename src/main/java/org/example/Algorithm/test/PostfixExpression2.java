@@ -1,9 +1,6 @@
 package org.example.Algorithm.test;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class PostfixExpression2 {
 
@@ -32,22 +29,31 @@ public class PostfixExpression2 {
             q.add(sc.nextInt());
         }
 
+        Map<String, Double> map = new HashMap<>();
         Stack<Double> stack = new Stack<>();
-        //ABC*+DE/-
+
         for (int i = 0; i < postExpression.length(); i++) {
             char c = postExpression.charAt(i);
+            String s = String.valueOf(c);
+
             if (!Character.isLetter(c)) {
-                String operator = String.valueOf(c);
                 Double y = stack.pop();
                 Double x = stack.pop();
 
-                Double result = calculation(operator, x, y);
+                Double result = calculation(s, x, y);
                 stack.add(result);
             } else {
-                Double v = Double.valueOf(q.remove());
-                stack.add(v);
+                Double findValue = map.get(s);
+                if (findValue == null) {
+                    Double v = Double.valueOf(q.remove());
+                    map.put(s, v);
+                    stack.add(v);
+                } else {
+                    stack.add(findValue);
+                }
             }
         }
+        map.clear();
 
         return stack.pop();
     }
