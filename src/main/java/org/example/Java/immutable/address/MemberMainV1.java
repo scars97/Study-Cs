@@ -10,5 +10,9 @@ public class MemberMainV1 {
 
         System.out.println("memberA = " + memberA);
         System.out.println("memberB = " + memberB);
+
+        memberB.getAddress().setValue("부산");
+        System.out.println("memberA = " + memberA);
+        System.out.println("memberB = " + memberB);
     }
 }
