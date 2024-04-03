@@ -1,5 +1,6 @@
 package org.example.Algorithm.test;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class PostfixExpression2 {
@@ -15,8 +16,9 @@ public class PostfixExpression2 {
         int N = sc.nextInt();
 
         // ABC*+DE/- -> (A+(B*C))-(D/E)
-        Double result = result(N, sc);
+        Double value = result(N, sc);
 
+        String result = String.format("%.2f", value);
         System.out.println(result);
         sc.close();
     }
