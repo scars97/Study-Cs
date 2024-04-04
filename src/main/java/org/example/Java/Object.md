@@ -230,4 +230,5 @@ public class Example {
 - 각 인스턴스가 본질적으로 고유하다.
 - 인스턴스의 논리적 동치성(logical equality)을 검사할 일이 없다.
 - 상위 클래스에서 재정의한 equals가 하위 클래스에도 들어맞는다.
+  - List 구현체들은 AbstractList로부터 equals를 상속받는다.
 - 클래스가 private이거나 package-private이고 equals 메서드를 호출할 일이 없다.
