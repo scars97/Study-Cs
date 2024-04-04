@@ -1,6 +1,5 @@
 package org.example.Algorithm.test;
 
-import java.text.DecimalFormat;
 import java.util.*;
 
 public class PostfixExpression2 {
@@ -14,23 +13,20 @@ public class PostfixExpression2 {
         Scanner sc = new Scanner(System.in);
 
         int N = sc.nextInt();
+        String postExpression = sc.next();
+        Queue<Integer> operands = new LinkedList<>();
+        for (int i = 0; i < N; i++) {
+            operands.add(sc.nextInt());
+        }
 
-        // ABC*+DE/- -> (A+(B*C))-(D/E)
-        Double value = result(N, sc);
+        Double value = operationOfInfixExpression(postExpression, operands);
 
         String result = String.format("%.2f", value);
         System.out.println(result);
         sc.close();
     }
 
-    private static Double result(int N, Scanner sc) {
-        String postExpression = sc.next();
-
-        Queue<Integer> q = new LinkedList<>();
-        for (int i = 0; i < N; i++) {
-            q.add(sc.nextInt());
-        }
-
+    private static Double operationOfInfixExpression(String postExpression, Queue<Integer> operands) {
         Map<String, Double> map = new HashMap<>();
         Stack<Double> stack = new Stack<>();
 
@@ -42,12 +38,12 @@ public class PostfixExpression2 {
                 Double y = stack.pop();
                 Double x = stack.pop();
 
-                Double result = calculation(s, x, y);
+                Double result = calculator(s, x, y);
                 stack.add(result);
             } else {
                 Double findValue = map.get(s);
                 if (findValue == null) {
-                    Double v = Double.valueOf(q.remove());
+                    Double v = Double.valueOf(operands.remove());
                     map.put(s, v);
                     stack.add(v);
                 } else {
@@ -60,7 +56,7 @@ public class PostfixExpression2 {
         return stack.pop();
     }
 
-    private static Double calculation(String operator, double x, double y) {
+    private static Double calculator(String operator, double x, double y) {
 
         if (PLUS.equals(operator)) {
             return x + y;
