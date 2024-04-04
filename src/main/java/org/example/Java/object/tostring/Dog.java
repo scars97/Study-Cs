@@ -1,5 +1,8 @@
 package org.example.Java.object.tostring;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class Dog {
 
     private String dogName;
@@ -12,9 +15,14 @@ public class Dog {
 
     @Override
     public String toString() {
-        return "Dog{" +
+        /*return "Dog{" +
                 "dogName='" + dogName + '\'' +
                 ", age=" + age +
-                '}';
+                '}';*/
+
+        return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE)
+                .append("dogName", dogName)
+                .append("age", age)
+                .toString();
     }
 }
