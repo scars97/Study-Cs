@@ -117,25 +117,6 @@ public static String valueOf(Object obj) {
 }
 ```
 
-### toString() 오버라이딩
-- 기본적으로 제공하는 클래스 정보와 참조값으로는 객체의 상태를 온전히 나타내지 못한다.
-- 보통 toString()을 재정의해서 보다 유용한 정보를 제공하는 것이 일반적.
-```java
-public static void main(String[] args) {
-    Dog dog = new Dog();
-    
-    // 재정의 x
-    System.out.println(dog); // java.lang.Dog@5594a1b5
-        
-    // 재정의    
-    System.out.println(dog); // Dog{dogName='멍멍이1', age=2}
-}
-```
-
-- Object 하위 클래스가 Object 타입을 받는 인수로 전달되고 toString()을 호출했을 때
-- 하위 클래스에 toString()이 재정의 되지않았다면 Object의 toString()을 사용하게 되고,
-- 재정의 되었다면 그 메서드를 실행한다.
-
 ## Object와 OCP
 **OCP - 개방 폐쇄 원칙**
 
@@ -152,6 +133,32 @@ Object를 사용함으로써, 다형적 참조를 활용함으로써 모든 객�
 공통으로 사용되는 toString() 메서드를 재정의하여 기능을 확장할 수 있다.
 
 ---
+
+※ Object 에서 final이 아닌 메서드는 모두 재정의를 염두에 두고 설계된 것이라 재정의 시 지켜야 하는 일반 규약이 정의되어 있다.
+
+### toString()
+- 기본적으로 제공하는 클래스 정보와 참조값으로는 객체의 상태를 온전히 나타내지 못한다.
+- 보통 toString()을 재정의해서, 보다 유용한 정보를 제공하는 것이 일반적.
+```java
+public static void main(String[] args) {
+    Dog dog = new Dog();
+    
+    // 재정의 x
+    System.out.println(dog); // java.lang.Dog@5594a1b5
+        
+    // 재정의 o
+    System.out.println(dog); // Dog{dogName='멍멍이1', age=2}
+}
+```
+- Object 하위 클래스가 Object 타입을 받는 인수로 전달되고 toString()을 호출했을 때
+- 하위 클래스에 toString()이 재정의 되지않았다면 Object의 toString()을 사용하게 되고,
+- 재정의 되었다면 그 메서드를 실행한다.
+- toString()은 재정의하는 것이 좋다.
+- apache commons:commons-lang 라이브러리 설명 (리플렉션 기반) [참고링크](http://www.java2s.com/example/java-api/org/apache/commons/lang3/builder/tostringstyle/json_style-0.html)
+```
+toString 일반 규약
+- 간결하면서 사람이 읽기 쉬운 형태의 유익한 정보를 반환해야 한다.
+```
 
 ## equals()
 
@@ -202,7 +209,7 @@ public class Example {
 }
 ```
 
-### 정확한 equals()?
+#### 정확한 equals()?
 아래의 규칙을 지켜야 한다.
 
 - 반사성(Reflexivity) 
@@ -218,3 +225,9 @@ public class Example {
   한다.
 - null에 대한 비교
   - 모든 객체는 null 과 비교했을 때 false 를 반환해야 한다
+
+만약 다음 상황 중 하나에 해당한다면 재정의하지 않는 것이 좋다.
+- 각 인스턴스가 본질적으로 고유하다.
+- 인스턴스의 논리적 동치성(logical equality)을 검사할 일이 없다.
+- 상위 클래스에서 재정의한 equals가 하위 클래스에도 들어맞는다.
+- 클래스가 private이거나 package-private이고 equals 메서드를 호출할 일이 없다.
