@@ -1,8 +1,8 @@
 package org.example.Algorithm.test;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import com.sun.jdi.ArrayReference;
+
+import java.util.*;
 
 public class PrinterQueue {
 
@@ -12,10 +12,12 @@ public class PrinterQueue {
 
         int testCnt = sc.nextInt();
 
-        Queue<Integer> files = new LinkedList<>();
+        int[] files;
         for (int i = 0; i < testCnt; i++) {
             int N = sc.nextInt(); // 문서 개수
             int M = sc.nextInt(); // 출력 문서 위치 순번
+
+            files = new int[N];
 
             int peek = 0;
             int result = 0;
@@ -25,7 +27,7 @@ public class PrinterQueue {
                 if (j == M) {
                     peek = importance;
                 }
-                files.add(importance);
+                files[j] = importance;
             }
 
             // 내림차순 정렬
@@ -48,8 +50,12 @@ public class PrinterQueue {
         
     }
 
-    public static Queue<Integer> descendingSort(Queue<Integer> files) {
+    public static Queue<Integer> descendingSort(int[] files) {
 
-        return files;
+        for (int i = 0; i < files.length; i++) {
+
+        }
+
+        return null;
     }
 }
