@@ -41,21 +41,31 @@ public class PrinterQueue {
                     break;
                 }
             }
-
-            files.clear();
             sb.append(result);
         }
 
         System.out.println(sb);
-        
     }
 
     public static Queue<Integer> descendingSort(int[] files) {
+        Queue<Integer> sortedFile = new LinkedList<>();
 
-        for (int i = 0; i < files.length; i++) {
+        int length = files.length;
 
+        for (int i = 1; i <= length; i++) {
+            for (int j = 1; j <= length - i; j++) {
+                if (files[j - 1] <= files[j]) {
+                    int temp = files[j - 1];
+                    files[j - 1] = files[j];
+                    files[j] = temp;
+                }
+            }
         }
 
-        return null;
+        for (int file : files) {
+            sortedFile.add(file);
+        }
+
+        return sortedFile;
     }
 }
