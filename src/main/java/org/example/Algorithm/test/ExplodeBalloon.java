@@ -16,22 +16,30 @@ public class ExplodeBalloon {
             balloon.add(new int[]{i + 1, sc.nextInt()});
         }
 
-        int i = N;
         while (!balloon.isEmpty()) {
-            int size = balloon.size();
-
-            int[] pop = balloon.remove(size - i);
+            int[] pop = balloon.remove();
 
             int balloonNum = pop[0];
             sb.append(balloonNum).append(" ");
 
             int writeNum = pop[1];
+
             if (writeNum < 0) {
-                i = size + writeNum;
+                for (int j = 0; j < -writeNum; j++) {
+                    int[] removeLast = balloon.removeLast();
+                    balloon.addFirst(removeLast);
+                }
             } else {
-                i = size - writeNum;
+                for (int j = 0; j < writeNum - 1; j++) {
+                    int[] removeFirst = balloon.removeFirst();
+                    balloon.addLast(removeFirst);
+                }
             }
 
+            if (balloon.size() == 1) {
+                int[] lastPop = balloon.remove();
+                sb.append(lastPop[0]).append(" ");
+            }
         }
 
         System.out.println(sb);
