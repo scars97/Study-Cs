@@ -1,13 +1,14 @@
 package org.example.Algorithm.test;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Scanner;
 
 public class ExplodeBalloon {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        LinkedList<int[]> balloon = new LinkedList<>();
+        Deque<int[]> balloon = new ArrayDeque<>();
         StringBuilder sb = new StringBuilder();
 
         int N = sc.nextInt();
@@ -27,10 +28,16 @@ public class ExplodeBalloon {
                 break;
             }
 
-            int writeNum = pop[1] < 0 ? -pop[1] : pop[1] - 1;
+            int writeNum = pop[1];
 
-            for (int i = 0; i < writeNum; i++) {
-                balloon.add(balloon.remove());
+            if (writeNum < 0) {
+                for (int i = 0; i < -writeNum; i++) {
+                    balloon.addFirst(balloon.removeLast());
+                }
+            } else {
+                for (int i = 0; i < writeNum - 1; i++) {
+                    balloon.add(balloon.remove());
+                }
             }
         }
 
