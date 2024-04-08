@@ -19,30 +19,21 @@ public class ExplodeBalloon {
         while (!balloon.isEmpty()) {
             int[] pop = balloon.remove();
 
-            int balloonNum = pop[0];
-            sb.append(balloonNum).append(" ");
-
-            int writeNum = pop[1];
-
-            if (writeNum < 0) {
-                for (int j = 0; j < -writeNum; j++) {
-                    int[] removeLast = balloon.removeLast();
-                    balloon.addFirst(removeLast);
-                }
-            } else {
-                for (int j = 0; j < writeNum - 1; j++) {
-                    int[] removeFirst = balloon.removeFirst();
-                    balloon.addLast(removeFirst);
-                }
-            }
+            sb.append(pop[0]).append(" ");
 
             if (balloon.size() == 1) {
                 int[] lastPop = balloon.remove();
                 sb.append(lastPop[0]).append(" ");
+                break;
+            }
+
+            int writeNum = pop[1] < 0 ? -pop[1] : pop[1] - 1;
+
+            for (int i = 0; i < writeNum; i++) {
+                balloon.add(balloon.remove());
             }
         }
 
         System.out.println(sb);
-
     }
 }
