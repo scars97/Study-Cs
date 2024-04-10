@@ -1,10 +1,10 @@
-package org.example.Java.enumeration;
+package org.example.Java.enumeration.cafeexample.ex01;
 
-public class Coffee {
-
-    private int price;
+public class CoffeeService {
 
     public int order(String coffee) {
+        int price;
+
         if (coffee.equals("AMERICANO")) {
             price = 700;
         } else if (coffee.equals("LATTE")) {
