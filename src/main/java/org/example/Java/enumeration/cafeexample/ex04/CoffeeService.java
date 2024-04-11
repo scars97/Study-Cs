@@ -7,11 +7,11 @@ public class CoffeeService {
     public int order(Menu menu) {
         int price;
 
-        if (menu.equals(AMERICANO)) {
+        if (menu == AMERICANO) {
             price = 700;
-        } else if (menu.equals(LATTE)) {
+        } else if (menu == LATTE) {
             price = 1500;
-        } else if (menu.equals(MOCHA)) {
+        } else if (menu == MOCHA) {
             price = 1700;
         } else {
             price = 0;
