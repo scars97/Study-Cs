@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 public class MainV3 {
 
-    public static void main(String[] args) throws NetworkClientExceptionV3 {
+    public static void main(String[] args) {
         //NetworkServiceV3_1 networkService = new NetworkServiceV3_1();
         //NetworkServiceV3_2 networkService = new NetworkServiceV3_2();
-        NetworkServiceV3_3 networkService = new NetworkServiceV3_3();
+        //NetworkServiceV3_3 networkService = new NetworkServiceV3_3();
+        NetworkServiceV3_4 networkService = new NetworkServiceV3_4();
 
         Scanner sc = new Scanner(System.in);
 
