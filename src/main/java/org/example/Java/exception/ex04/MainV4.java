@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class MainV4 {
 
     public static void main(String[] args) {
-        NetworkServiceV4_1 networkService = new NetworkServiceV4_1();
+        //NetworkServiceV4_1 networkService = new NetworkServiceV4_1();
+        NetworkServiceV4_2 networkService = new NetworkServiceV4_2();
 
         Scanner sc = new Scanner(System.in);
 
