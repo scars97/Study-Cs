@@ -1,4 +1,4 @@
-package org.example.Java.code.Nested;
+package org.example.Java.code.nested.nested;
 
 public class Outer {
 
