@@ -1,4 +1,4 @@
-package org.example.Java.code.socket;
+package org.example.Java.code.socket.ex01;
 
 import java.io.BufferedReader;
 import java.io.IOException;
