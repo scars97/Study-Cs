@@ -30,11 +30,10 @@
 
 ---
 ### Java
-[//]: # (- [Object]&#40;src/main/java/org/example/Java/Object.md&#41;)
+- [Object](src/main/java/org/example/Java/Object.md)
 - [Reflection](src/main/java/org/example/Java/Reflection.md)
 - [열거형](src/main/java/org/example/Java/열거형.md)
-
-[//]: # (- [불변 객체]&#40;src/main/java/org/example/Java/불변%20객체.md&#41;)
+- [불변 객체](src/main/java/org/example/Java/불변%20객체.md)
 
 ---
 ### Algorithm
