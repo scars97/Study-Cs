@@ -23,7 +23,7 @@
 - VM은 한 서버의 여러 OS를 가상화 하여 사용하지만, 컨테이너는 프로세스를 격리시켜 동작한다.
 
 ### VM vs Docker
-![img.png](img/Vm vs Docker.png)
+![img.png](img/VmDocker.png)
 
 **Vm**
 - Host OS 위에 가상화를 시키기 위한 Hypervisor 엔진 그리고 위에 Guest OS를 올려 사용.
