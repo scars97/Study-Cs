@@ -1,16 +1,20 @@
-package org.example.Java.code.clone;
+package org.example.Java.code.clone.shallow;
+
+import org.example.Java.code.clone.Address;
 
 public class Member implements Cloneable {
 
     private String name;
     private int age;
-
     private int[] spec;
+    private Address address;
 
-    public Member(String name, int age, int[] spec) {
+
+    public Member(String name, int age, int[] spec, Address address) {
         this.name = name;
         this.age = age;
         this.spec = spec;
+        this.address = address;
     }
 
     public String getName() {
@@ -37,7 +41,15 @@ public class Member implements Cloneable {
         this.spec = spec;
     }
 
-    public Member getMember() {
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Member shallowCopy() {
         Member cloned = null;
 
         try {
