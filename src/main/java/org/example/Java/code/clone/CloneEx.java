@@ -8,9 +8,9 @@ public class CloneEx {
 
         Member cloned = origin.getMember();
 
-        cloned.setSpec(new int[] {170, 58});
+        cloned.getSpec()[0] = 100;
 
-        System.out.println(origin.getSpec());
-        System.out.println(cloned.getSpec());
+        System.out.println(origin.getSpec()[0]);
+        System.out.println(cloned.getSpec()[0]);
     }
 }
