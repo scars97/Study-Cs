@@ -13,6 +13,8 @@
 - C, C++
 > 런타임 환경 : 애플리케이션이 OS의 시스템 자원에 액세스할 수 있도록 해주는 실행 환경(VM)
 
+![img.png](../img/managed-unmanaged.png)
+
 ### Java 접근 제어자에는 무엇이 있는지 설명해주시고 Protect와 Private는 어느 시점에 어떻게 사용될 수 있는지 이야기 해주세요.
 - public, default, private, protect
 - private은 같은 클래스 내에서만 접근이 가능하다
@@ -27,6 +29,7 @@
 - Method Area : 로드된 클래스의 메타데이터(클래스 이름, 부모 클래스 이름, 메서드, 변수)를 저장
   - static 변수, 상수, 메서드 코드가 저장
     - JDK7까지 static 변수들은 Method Area에 저장되었지만 JDK8부터는 Heap Area로 이동
+    - 따라서 static 변수도 GC의 대상이다.
   - 모든 스레드가 공유되는 영역
 - Heap Area : 모든 객체의 인스턴스와 배열이 저장된다.
   - GC가 관리
@@ -36,14 +39,14 @@
   - 메서드 수행이 끝나면 프레임을 삭제한다.
   - 각 스레드마다 [별도로 할당](src/main/java/org/example/Operating%20System/프로세스&%20스레드.md) 되는 메모리 공간
 - PC Register : 스레드가 시작될 때 생성되며, 각 스레드마다 하나씩 존재한다.
-  - 쓰레드의 문맥 교환 시 정확한 실행 위치를 유지한다
+  - 쓰레드의 문맥 교환(Context Switch) 시 정확한 실행 위치를 유지한다
   - 현재 수행중인 JVM 명령의 주소를 갖는다.
 - Native method stack : 자바 외 언어로 작성된 네이티브 코드를 위한 메모리 영역
 
 ### JVM은 어떤 방식으로 코드를 해석하고 실행시키는지 흐름에 맞게 설명해 주세요. (Java 실행 흐름)
-- 자바 컴파일러
+- 자바 컴파일러(javac)
   - 자바 소스 파일을 바이트코드 파일인 class 파일로 변환
-  - 바이트코드는 JVM이 이해라 수 있는 명령어들로 구성된다.
+  - 바이트코드는 JVM이 이해할 수 있는 명령어들로 구성된다.
 - Class Loader
   - 필요한 클래스를 로딩해서 메모리에 올린다.
   - 런타임 시에 동적으로 클래스를 로드한다.
@@ -61,7 +64,7 @@
 
 ### Garbage Collector은 무엇인가요?
 - Heap 메모리 영역에서 참조되지 않은 객체를 제거
-- Heap 영역 -> Young Generation의 Eden영역, Survivor영역
+- Heap 영역 -> Young Generation의 Eden영역, Survivor영역(S0,S1)
 - 객체가 생성되면 Eden 영역에 저장된다.
 - 객체가 쌓여 Eden 영역이 차게되면 GC가 실행되는데 mark-sweep-compact 방식으로 실행된다.
   - mark : 살아있는 객체를 찾아 마킹
@@ -70,6 +73,8 @@
 - Eden 영역에서 살아남은 객체들은 Survivor 영역에 이동한다.
   - 살아남은 객체의 age가 1씩 증가
 - age가 기준(jdk의 경우 31)만큼 커지면 Old Generation으로 이동된다.
+
+![img.png](../img/heap-area.png)
 
 ### GC가 자주 발생된다면 어떤 문제가 있을까요?
 - STW(Stop The World) : GC가 작동되는 동안에는 모든 애플리케이션 스레드가 중단
