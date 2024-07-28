@@ -4,6 +4,7 @@
 
 프레임워크
 - Spring
+- IOC, DI, PSA, CoC, AOP, Servlet, Proxy, Singleton
 
 상태 관리
 - RDMBS

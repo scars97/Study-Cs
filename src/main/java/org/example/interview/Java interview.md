@@ -13,7 +13,7 @@
 - C, C++
 > 런타임 환경 : 애플리케이션이 OS의 시스템 자원에 액세스할 수 있도록 해주는 실행 환경(VM)
 
-![img.png](../img/managed-unmanaged.png)
+![img.png](../Java/img/managed-unmanaged.png)
 
 ### Java 접근 제어자에는 무엇이 있는지 설명해주시고 Protect와 Private는 어느 시점에 어떻게 사용될 수 있는지 이야기 해주세요.
 - public, default, private, protect
@@ -74,7 +74,7 @@
   - 살아남은 객체의 age가 1씩 증가
 - age가 기준(jdk의 경우 31)만큼 커지면 Old Generation으로 이동된다.
 
-![img.png](../img/heap-area.png)
+![img.png](../Java/img/heap-area.png)
 
 ### GC가 자주 발생된다면 어떤 문제가 있을까요?
 - STW(Stop The World) : GC가 작동되는 동안에는 모든 애플리케이션 스레드가 중단
@@ -229,4 +229,4 @@
   - 각 세그먼트는 자신만의 해시 버킷 배열을 가지고 있으며, 세그먼트 내부의 각 버킷은 엔트리 객체로 구성된다. 
   - 세그먼트는 자체적으로 동기화되어 있으므로, 여러 스레드에서 동시에 접근해도 안전하게 데이터 처리 가능
 
-![img.png](HashMap.png)
+![img.png](img/HashMap.png)
