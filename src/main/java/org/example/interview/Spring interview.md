@@ -159,7 +159,7 @@
   - 특정 객체에 대한 접근을 제어하거나 부가기능을 구현하는데 사용하는 패턴
   - 기존 타겟 클래스와 프록시 클래스를 만들어 구현한다.
 - JDK Dynamic Proxy
-  - JDK에서 지원하는 프록시 생성 방법 -> Reflection API 사용, 인터페이스 반드시 필요 
+  - JDK에서 지원하는 프록시 생성 방법 -> Reflection API 사용, 인터페이스 반드시 필요
   - 프록시 클래스를 직접 구현하지 않아도 된다.
   - InvocationHandler를 통해 중복 코드를 줄일 수 있다.
   - 클라이언트 요청을 Dynamic Proxy는 InvocationHandler에게 위임 -> InvocationHandler는 부가 기능 수행 후 타겟 클래스에게 위임
@@ -169,6 +169,7 @@
   - 반드시 인터페이스 타겟 클래스를 필요로 하기 때문에 다른 타겟 클래스에 프록시를 생성한다면,
   - 같은 InvocationHandler를 사용하지만 각자 다른 타겟 클래스의 인자를 받아야하기 때문에 InvocationHandler를 매번 생성하게 된다.  
 - CGLIB Proxy
+  - 클래스 기반으로 바이트 코드를 조작하여 프록시를 생성하는 방식
   - 스프링에서 클라이언트가 요청하면 ProxyFactoryBean에서 인터페이스 유무를 확인 -> 있다면 Dynamic Proxy 방식으로 프록시 생성, 없다면 CGLIB 방식으로 프록시 생성
   - client -> CGLIB -> Method Interceptor -> Target
   - Enhancer라는 외부 의존성을 추가해야 하며, 타겟 클래스의 기본 생성자를 필요로 한다. 그리고 타겟 클래스를 상속받아 프록시를 만든다.
