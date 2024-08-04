@@ -106,19 +106,17 @@
 ### 순환 참조는 무엇이고 어떤 상황에서 발생할까요?
 - 서로 다른 빈이 서로를 참조하면서 어떤 빈을 먼저 생성해야 할지 결정하지 못하는 문제
 - 순환 참조는 DI 상황에서 발생한다.
-  - setter, 필드 주입 방식은 애플리케이션 로딩 중에 주입하지 않고 실제로 사용하는 시점에 주입하기 때문에 해당 메서드를 호출하는 시점에 순환 참조가 발생한다.
-  - **생성자 주입 방식에서 순환참조가 발생**하는데, 빈을 생성하는 시점에서 참조하려는 다른 빈을 주입해줘야 하기 때문이다.
+  - setter, 필드 주입 방식은 애플리케이션 로딩 중에 주입하지 않고 실제로 사용하는 시점에 주입하기 때문에 해당 메서드를 호출하는 시점에 순환 호출이 발생한다.
+  - **생성자 주입 방식에서 순환참조가 발생**하는데, 빈을 생성하는 시점에서 참조하려는 다른 빈을 주입해줘야 하는데 순환 참조가 일어나 어떤 빈도 생성되지 않는다.
 
 ### Field Injection을 사용하면 안되는 이유?
-- 주입된 객체는 불변한 상태를 만들 수 없다.
+- 필드 주입으로 주입된 객체는 불변한 상태를 만들 수 없다.
 - 기존에 불가능한 주입을 프레임워크의 힘을 빌려 주입하는 방식이다.
   - 테스트 시 수동으로 의존성을 주입하고 싶어도 생성자, setter도 없으므로 의존성을 부여할 수 없다.
   - 필드 주입은 의존성이 프레임워크에 강하게 종속된다는 문제가 있다.
 
 ### (Field 주입과 대비하여) 생성자 주입은 빈 생성 때 사용되는 리플랙션 외에 추가적인 리플랙션을 진행하나요?
 - 생성자 호출 시점에 완료하기 때문에, 추가적인 리플렉션은 필요하지 않다.
-
-### Spring, Spring Boot 차이점
 
 ### Value Object, Data Transfer Object, Data Access Object 대해서 각각 설명해 주세요.
 - VO
@@ -147,13 +145,56 @@
 - @Transactional, Interceptor, Filter 등이 aop
 
 ### Dynamic Proxy, CGLIB Proxy
+- Proxy
+  - 클라이언트로부터 타겟을 대신해서 요청을 받는 대리인
+  - 실제 오브젝트 타겟은 프록시를 통해 최종적으로 요청을 받아 처리
+  - 타겟은 자신의 기능에만 집중하고 부가기능은 프록시에게 위임
+  - 장점
+    - 기존 코드를 변경하지 않고 새로운 기능을 추가할 수 있다 -> OCP
+    - 기존 코드가 해야 하는 일만 유지할 수 있다 -> SRP
+    - 기능 추가, 접근 제어 등 다양하게 응용하여 활용할 수 있다.
+  - 단점
+    - 코드의 복잡도 증가 / 중복 코드 발생
+- Proxy 패턴
+  - 특정 객체에 대한 접근을 제어하거나 부가기능을 구현하는데 사용하는 패턴
+  - 기존 타겟 클래스와 프록시 클래스를 만들어 구현한다.
+- JDK Dynamic Proxy
+  - JDK에서 지원하는 프록시 생성 방법 -> Reflection API 사용, 인터페이스 반드시 필요 
+  - 프록시 클래스를 직접 구현하지 않아도 된다.
+  - InvocationHandler를 통해 중복 코드를 줄일 수 있다.
+  - 클라이언트 요청을 Dynamic Proxy는 InvocationHandler에게 위임 -> InvocationHandler는 부가 기능 수행 후 타겟 클래스에게 위임
+    - client -> Dynamic Proxy -> InvocationHandler -> Target
+  - InvocationHandler의 invoke를 구현해야만 부가 기능이 추가된다.
+  - Reflection API 사용으로 성능에 느리다.
+  - 반드시 인터페이스 타겟 클래스를 필요로 하기 때문에 다른 타겟 클래스에 프록시를 생성한다면,
+  - 같은 InvocationHandler를 사용하지만 각자 다른 타겟 클래스의 인자를 받아야하기 때문에 InvocationHandler를 매번 생성하게 된다.  
+- CGLIB Proxy
+  - 스프링에서 클라이언트가 요청하면 ProxyFactoryBean에서 인터페이스 유무를 확인 -> 있다면 Dynamic Proxy 방식으로 프록시 생성, 없다면 CGLIB 방식으로 프록시 생성
+  - client -> CGLIB -> Method Interceptor -> Target
+  - Enhancer라는 외부 의존성을 추가해야 하며, 타겟 클래스의 기본 생성자를 필요로 한다. 그리고 상속을 이용해서 프록시를 만든다.
+  - 스프링에서는 기본적으로 CGLIB을 통해 프록시를 생성하는데 proxy-target-class:false 시 Dynamic Proxy로 동작한다.
+  - 스프링에서는 왜 CGLIB을 사용할까
+    - 인터페이스 기반 프록시인 Dynamic Proxy는 때때로 ClassCast Exception을 추적하기 어렵게 한다.
+
+### ProxyFactoryBean
+- 프록시를 빈으로 생성해주는 역할
+- 기본적으로 CGLIB 방식으로 프록시를 생성한다.
+- 만약 요청을 Dynamic Proxy의 InvocationHanlder를 받게 된다면 어떻게 될까?
+  - InvocationHanlder는 타겟에 의존적이기 때문에 다른 타겟 클래스의 정보를 받기 위해 매번 같은 기능을 하는 Bean을 등록하고 객체를 생성해줘야 한다.
+- 스프링에서는 ProxyFactoryBean이 프록시를 생성하면 부가기능을 MethodInterceptor가 처리해준다.
+  - 이때 MethodInterceptor는 타겟 클래스의 정보를 가지지 않는데 프록시가 타겟 클래스의 정보를 가지고 있다.
+  - 부가 기능을 독립적으로 유지하기 위해 싱글톤으로 유지한다.
+
+### Spring의 @Transactional?
+
+### @Transactional를 스프링 Bean 메서드 A에 적용하였고, 해당 Bean의 메서드 B가 호출되었을 때 메서드 내부에서 메서드 A를 호출하면 어떤 요청 흐름이 발생하게 되나요?
+
+### Spring, Spring Boot 차이점
 
 ### Interceptor와 Filter의 차이점
 - 스프링에서는 어떻게 구현할 수 있는지
 
 ### Message Converter는 어느 시점에 사용되고 어떤 기능을 제공하나요?
-
-### @Transactional를 스프링 Bean 메서드 A에 적용하였고, 해당 Bean의 메서드 B가 호출되었을 때 메서드 내부에서 메서드 A를 호출하면 어떤 요청 흐름이 발생하게 되나요?
 
 ### MVC 1, 2 개념에 대해서 설명해 주세요.
 - MVC1 은 JSP 페이지가 뷰, 컨트롤러 역할을 모두 수행하는 방식으로 패턴이 제대로 분리되어 있지 않고 섞여있는 경우가 많음.
