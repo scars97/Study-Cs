@@ -214,6 +214,7 @@
   - 내장 서버를 사용하기 때문에 기존 서버 구동 시간보다 더 빠르다.
   - 내장 서블릿 컨테이너로 jar 파일로 간단 배포가 가능하다.
 
+![img.png](img/spring vs spring-boot.png)
 
 ### Interceptor와 Filter의 차이점
 - 스프링에서는 어떻게 구현할 수 있는지
