@@ -216,8 +216,40 @@
 
 ![img.png](img/spring vs spring-boot.png)
 
-### Interceptor와 Filter의 차이점
-- 스프링에서는 어떻게 구현할 수 있는지
+### Filter & Interceptor
+- 공통 관심사항(유저 로그인 권한 등)을 한 곳에서 처리할 수 있다.
+- Filter
+  - 자바 표준 스펙으로, Dispatcher Servlet 에 요청이 전달되기 전, 후에 부가작업을 처리하는 객체
+  - init: 서버가 실행되고 Filter가 생성될 때 한번만 실행된다.
+  - doFilter: 실제 공통 로직을 처리. 
+    - ServletRequest, ServletResponse로 파라미터로 받아 HTTP 정보를 읽을 수 있다., FilterChain
+    - 요청이 들어올 때마다 실행된다.
+  - destory: Filter가 소멸될 때 한번만 실행된다.
+  - destory 는 디폴트 메서드로 선택적으로 오버라이딩이 가능, doFilter는 필수적으로 오버라이딩을 해줘야 한다.
+  - Filter 등록 방법: @Component(전체 적용) @WebFilter(부분적 적용), FilterRegistrationBean 등록
+  - 동작 방식
+    - FilterChain의 doFilter가 호출되고 등록된 Filter를 실행.
+    - 등록된 filter의 개수에 따라 chain.doFilter 호출
+    - Filter 가 모두 끝난 뒤에 servieServlet 메서드를 호출해 DispatcherServlet 에 요청 
+- Interceptor
+  - Spring이 제공하는 기술로, DispatcherServlet이 Controller를 호출하기 전/후 요청에 대해 부가적인 작업을 처리하는 객체
+  - preHandle: 공통 로직 처리
+  - postHandle: handler가 실행된 후 호출. ModelAndView에 대해 추가적인 작업이 필요할 때 사용
+  - afterCompletion: handler가 실행된 후 호출. 비즈니스 로직의 예외를 처리
+  - interceptor 등록 방법: WebMvcConfigurer의 addInterceptors 재정의
+  - 호출 시점
+    - 핸들러 조회 -> preHandle -> 핸들러 실행 -> postHandle -> view 관련 처리 -> afterCompletion
+  - 동작 방식
+    - DispatcherServlet이 호출되고 요청을 처리할 핸들러를 조회한다. 이때, 등록된 interceptor와 스프링에서 기본적으로 등록된 interceptor도 같이 조회한다.
+    - 핸들러 조회 후, 핸들러를 처리할 수 있는 핸들러 어댑터를 조회하는데 interceptor의 prehandle을 실행할 수 있는 메서드 호출 -> interceptor가 등록된 순서로 실행
+    - 핸들러 실행 후, postHandle 실행-> interceptor가 등록된 순서의 역순으로 실행.
+    - viewResolver에서 view를 반환하고 afterCompletion 실행
+
+![img.png](img/filter&interceptor.png)
+- @ControllerAdvice 적용범위는 DispatcherServlet
+- 웹 범위에서라면 서블릿 필터를 사용하는 것이 좋고, 세부적인 인가처리, 스프링에 관련된 기술이라면 interceptor를 사용하는 것이 좋다.
+
+
 
 ### Message Converter는 어느 시점에 사용되고 어떤 기능을 제공하나요?
 
