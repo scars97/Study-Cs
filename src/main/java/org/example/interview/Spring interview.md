@@ -280,3 +280,11 @@
 
 ### MVC 동작 방식, Spring MVC에서 HTTP 요청이 들어왔을 때의 흐름을 설명해 주세요.
 ![img.png](img/MVC-동작방식.png)
+
+### Spring Security
+- 스프링 기반의 애플리케이션 보안을 담당하는 스프링 하위 프레임워크
+  - 인증과 인가를 위해 Principal을 아이디로, Credential을 비밀번호로 사용하는 Credential 기반의 인증 방식을 사용
+  - Principal(접근 주체): 보호받는 Resource에 접근하는 대상
+  - Credential(비밀번호): Resource에 접근하는 대상의 비밀번호
+
+
