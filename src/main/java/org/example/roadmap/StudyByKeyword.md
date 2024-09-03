@@ -1,22 +1,22 @@
-언어
+### 1. 언어 - 3/5
 - Java 
 - 기본 문법, JVM, Thread, Lock & Concurrency, Collection, Reflection, Annotation, Lambda, Stream
 
-프레임워크
+### 2. 프레임워크 - 3/5
 - Spring
 - IOC, DI, PSA, CoC, AOP, Servlet, Proxy, Singleton
+  
+### 3. HTTP, 브라우저 - 3/5
+- TCP/IP/UDP
+- HTTP
+- 그림으로 배우는 HTTP & Network
 
-상태 관리
-- RDMBS
+### 4. 상태 관리
+- RDBMS
 - Redis
 - NoSQL
 - Kafka
 - DDL, DML, Transaction, ACID, Index
-
-HTTP, 브라우저
-- TCP/IP/UDP
-- HTTP 
-- 그림으로 배우는 HTTP & Network
 
 설계 방법론
 - REST
