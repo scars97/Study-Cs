@@ -34,6 +34,24 @@
 ### B-Tree 인덱스와 B+-Tree 인덱스의 차이는 무엇인가요?
 
 ### 인덱스 Scan 방식은 무엇이 있나요?
+- 인덱스를 이용해 데이터를 검색하는 다양한 방법
+- 풀 인덱스 스캔 (Full Index Scan) : 테이블의 모든 데이터를 인덱스를 통해 순차적으로 스캔하는 방식 
+  - SELECT * FROM customers
+- 범위 스캔 (Range Scan) : 범위 조건을 만족하는 데이터만 인덱스를 통해 검색하는 방식
+  - SELECT * FROM customers WHERE age > 30 AND age < 40
+- 유니크 스캔 (Unique Scan) : 특정 값이 정확히 하나의 결과를 반환할 때 사용된다. 기본키나 유니크 제약 조건이 있는 열에서 데이터를 조회할 때 사용된다.
+  - SELECT * FROM users WHERE user_id = 12345
+- 인덱스 스킵 스캔 (Index Skip Scan) : 2개 이상의 인덱스로 구성되어 있을 때, 선행 열을 포함하지 않는 쿼리를 실행할 때 사용된다.
+  - 인덱스가 user_id, last_name으로 구성되어 있다면, WHERE last_name = 'Smith' 와 같은 쿼리에서 user_id는 포함되지 않았지만, 인덱스를 사용할 수 있는 경우에 해당한다.
+  - 일부 열만 사용한 검색에서도 인덱스를 활용할 수 있어, 인덱스 범용성을 높여준다.
+- 인덱스 전방(Forward)/역방향(BackWard) 스캔 : 인덱스가 오름차순/내림차순으로 정렬된 상태에서 데이터를 검색하는 방식
+  - SELECT * FROM customers ORDER BY cutomer_id asc
+  - SELECT * FROM customers ORDER BY cutomer_id desc
+- 인덱스 스캔 방식을 선택하는 기준
+  - 인덱스 유무 : 해당 열에 인덱스가 정의되어 있으면, 그 인덱스를 사용하여 데이터를 검색합니다.
+  - 쿼리 조건 : WHERE 절에서 사용하는 조건에 따라 범위 스캔, 유니크 스캔 등이 선택됩니다.
+  - 복합 인덱스 : 복합 인덱스를 사용할 때, 쿼리에 포함된 열이 어떤 열인지에 따라 인덱스 스킵 스캔이 선택될 수 있다.
+  - 결과의 크기 : 쿼리의 결과가 많은 행을 반환해야 한다면 풀 인덱스 스캔이 선택될 수 있으며, 적은 행을 반환할 경우 범위 스캔이 더 적합하다.
 
 ### Transcational의 ACID 속성에 대해서 아시나요?
 
