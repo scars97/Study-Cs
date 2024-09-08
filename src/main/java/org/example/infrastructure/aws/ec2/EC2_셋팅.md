@@ -47,10 +47,10 @@ EC2를 통해 빌려서 쓸 수 있는 컴퓨터들이 위치한 위치를 보�
 ![img.png](img/ec2-network-setting-1.png)
 ![img_1.png](img/ec2-network-setting-2.png)
 
-> 잘 알려진 포트란?
-> 규약을 통해 역할이 정해져있는 포트 번호
-> 22번 (SSH, Secure Shell Protocol) : 원격 접속을 위한 포트번호
-> 80번 (HTTP) : HTTP로 통신할 때 사용
+> **잘 알려진 포트란?**<br>
+> 규약을 통해 역할이 정해져있는 포트 번호<br>
+> 22번 (SSH, Secure Shell Protocol) : 원격 접속을 위한 포트번호<br>
+> 80번 (HTTP) : HTTP로 통신할 때 사용<br>
 > 443번 (HTTPS) : HTTPS로 통신할 때 사용
 
 ## EC2 - 스토리지 구성
