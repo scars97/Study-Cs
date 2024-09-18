@@ -11,9 +11,8 @@
 - HTTP
 - 그림으로 배우는 HTTP & Network
 
-### 4. 상태 관리
+### 4. 상태 관리 - 2/5
 - RDBMS
-- Redis
 - NoSQL
 - Kafka
 - DDL, DML, Transaction, ACID, Index
