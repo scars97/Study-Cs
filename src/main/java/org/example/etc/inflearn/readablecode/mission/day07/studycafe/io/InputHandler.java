@@ -1,8 +1,9 @@
-package org.example.etc.study.inflearn.readablecode.mission.day07.studycafe.io;
+package org.example.etc.inflearn.readablecode.mission.day07.studycafe.io;
 
-import cleancode.studycafe.tobe.exception.AppException;
-import cleancode.studycafe.tobe.model.StudyCafePass;
-import cleancode.studycafe.tobe.model.StudyCafePassType;
+
+import org.example.etc.inflearn.readablecode.mission.day07.studycafe.exception.AppException;
+import org.example.etc.inflearn.readablecode.mission.day07.studycafe.model.StudyCafePass;
+import org.example.etc.inflearn.readablecode.mission.day07.studycafe.model.StudyCafePassType;
 
 import java.util.List;
 import java.util.Scanner;

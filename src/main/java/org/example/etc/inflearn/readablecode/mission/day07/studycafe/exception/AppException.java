@@ -1,4 +1,4 @@
-package org.example.etc.study.inflearn.readablecode.mission.day07.studycafe.exception;
+package org.example.etc.inflearn.readablecode.mission.day07.studycafe.exception;
 
 public class AppException extends RuntimeException {
 

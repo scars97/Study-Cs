@@ -1,7 +1,8 @@
-package org.example.etc.study.inflearn.readablecode.mission.day07.studycafe.io;
+package org.example.etc.inflearn.readablecode.mission.day07.studycafe.io;
 
-import cleancode.studycafe.tobe.model.StudyCafeLockerPass;
-import cleancode.studycafe.tobe.model.StudyCafePass;
+
+import org.example.etc.inflearn.readablecode.mission.day07.studycafe.model.StudyCafeLockerPass;
+import org.example.etc.inflearn.readablecode.mission.day07.studycafe.model.StudyCafePass;
 
 import java.util.List;
 

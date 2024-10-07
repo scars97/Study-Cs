@@ -1,4 +1,4 @@
-package org.example.etc.study.inflearn.readablecode.mission.day04;
+package org.example.etc.inflearn.readablecode.mission.day04;
 
 import java.util.List;
 

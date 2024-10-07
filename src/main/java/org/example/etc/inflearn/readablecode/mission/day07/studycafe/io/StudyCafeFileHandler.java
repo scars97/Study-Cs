@@ -1,8 +1,8 @@
-package org.example.etc.study.inflearn.readablecode.mission.day07.studycafe.io;
+package org.example.etc.inflearn.readablecode.mission.day07.studycafe.io;
 
-import cleancode.studycafe.tobe.model.StudyCafeLockerPass;
-import cleancode.studycafe.tobe.model.StudyCafePass;
-import cleancode.studycafe.tobe.model.StudyCafePassType;
+import org.example.etc.inflearn.readablecode.mission.day07.studycafe.model.StudyCafeLockerPass;
+import org.example.etc.inflearn.readablecode.mission.day07.studycafe.model.StudyCafePass;
+import org.example.etc.inflearn.readablecode.mission.day07.studycafe.model.StudyCafePassType;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +14,7 @@ public class StudyCafeFileHandler {
 
     public List<StudyCafePass> readStudyCafePasses() {
         try {
-            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/cleancode/studycafe/pass-list.csv"));
+            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/etc/readablecode/studycafe/pass-list.csv"));
             List<StudyCafePass> studyCafePasses = new ArrayList<>();
             for (String line : lines) {
                 String[] values = line.split(",");
@@ -35,7 +35,7 @@ public class StudyCafeFileHandler {
 
     public List<StudyCafeLockerPass> readLockerPasses() {
         try {
-            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/cleancode/studycafe/locker.csv"));
+            List<String> lines = Files.readAllLines(Paths.get("src/main/resources/etc/readablecode/studycafe/locker.csv"));
             List<StudyCafeLockerPass> lockerPasses = new ArrayList<>();
             for (String line : lines) {
                 String[] values = line.split(",");

@@ -1,4 +1,4 @@
-package org.example.etc.study.inflearn.readablecode.mission.day07.studycafe.model;
+package org.example.etc.inflearn.readablecode.mission.day07.studycafe.model;
 
 public class StudyCafeLockerPass {
 

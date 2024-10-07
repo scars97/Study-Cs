@@ -1,4 +1,4 @@
-package org.example.etc.study.inflearn.readablecode.mission.day04;
+package org.example.etc.inflearn.readablecode.mission.day04;
 
 public class Customer {
 
