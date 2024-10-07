@@ -31,23 +31,12 @@ public class StudyCafePassMachine {
             outputHandler.askPassTypeSelection();
 
             StudyCafePassType passType = inputHandler.getPassTypeSelectingUserAction();
+            List<StudyCafePass> passes = showPassesOf(passType);
 
-            List<StudyCafePass> findPasses = findPassesByPassType(passType);
-            outputHandler.showPassListForSelection(findPasses);
-            StudyCafePass selectedPass = inputHandler.getSelectPass(findPasses);
+            StudyCafePass selectedPass = inputHandler.getSelectPassFromUser(passes);
+            StudyCafeLockerPass lockerPass = findLockerPassBy(selectedPass);
 
-            // 사물함 사용 정책 확장 고려
-            if (isAvailableLockerAt(passType)) {
-                StudyCafeLockerPass lockerPass = findLockerPass(selectedPass);
-
-                outputHandler.askLockerPass(lockerPass);
-
-                boolean lockerSelection = inputHandler.getLockerSelection();
-                outputHandler.showPassOrderSummary(selectedPass, lockerSelection ? lockerPass : null);
-            } else {
-                outputHandler.showPassOrderSummary(selectedPass, null);
-            }
-
+            outputHandler.showPassOrderSummary(selectedPass, lockerPass);
         } catch (AppException e) {
             outputHandler.showSimpleMessage(e.getMessage());
         } catch (Exception e) {
@@ -55,25 +44,46 @@ public class StudyCafePassMachine {
         }
     }
 
-    private boolean isAvailableLockerAt(StudyCafePassType passType) {
-        return lockerPasses.stream()
-            .anyMatch(option -> option.getPassType() == passType);
+    private List<StudyCafePass> showPassesOf(StudyCafePassType passType) {
+        List<StudyCafePass> passes = findPassesBy(passType);
+        outputHandler.showPassesForSelection(passes);
+        return passes;
     }
 
-    private StudyCafeLockerPass findLockerPass(StudyCafePass selectedPass) {
-        return lockerPasses.stream()
-            .filter(option ->
-                option.getPassType() == selectedPass.getPassType()
-                    && option.getDuration() == selectedPass.getDuration()
-            )
-            .findFirst()
-            .orElse(null);
-    }
-
-    private List<StudyCafePass> findPassesByPassType(StudyCafePassType passType) {
+    private List<StudyCafePass> findPassesBy(StudyCafePassType passType) {
         return studyCafePasses.stream()
-            .filter(pass -> pass.getPassType() == passType)
-            .toList();
+                .filter(pass -> pass.getPassType() == passType)
+                .toList();
+    }
+
+    private StudyCafeLockerPass findLockerPassBy(StudyCafePass selectedPass) {
+        if (isLockerUnavailableFor(selectedPass.getPassType())) {
+            return null;
+        }
+
+        StudyCafeLockerPass lockerPass = lockerPasses.stream()
+                .filter(option ->
+                        option.getPassType() == selectedPass.getPassType()
+                                && option.getDuration() == selectedPass.getDuration()
+                )
+                .findFirst()
+                .orElse(null);
+
+        if (lockerPass != null) {
+            outputHandler.askLockerPass(lockerPass);
+            boolean isLockerSelected = inputHandler.getLockerSelection();
+
+            if (isLockerSelected) {
+                return lockerPass;
+            }
+        }
+
+        return null;
+    }
+
+    private boolean isLockerUnavailableFor(StudyCafePassType passType) {
+        return lockerPasses.stream()
+            .noneMatch(option -> option.getPassType() == passType);
     }
 
 }

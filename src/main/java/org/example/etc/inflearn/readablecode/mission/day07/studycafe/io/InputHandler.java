@@ -27,9 +27,13 @@ public class InputHandler {
         throw new AppException("잘못된 입력입니다.");
     }
 
-    public StudyCafePass getSelectPass(List<StudyCafePass> passes) {
+    public StudyCafePass getSelectPassFromUser(List<StudyCafePass> passes) {
         String userInput = SCANNER.nextLine();
         int selectedIndex = Integer.parseInt(userInput) - 1;
+        if (selectedIndex < 0 || selectedIndex >= passes.size()) {
+            throw new AppException("잘못된 입력입니다.");
+        }
+
         return passes.get(selectedIndex);
     }
 
@@ -37,5 +41,4 @@ public class InputHandler {
         String userInput = SCANNER.nextLine();
         return "1".equals(userInput);
     }
-
 }
