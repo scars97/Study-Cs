@@ -12,7 +12,6 @@ import java.util.List;
 
 public class StudyCafePassMachine {
 
-    // io 추상화 필요
     private final InputHandler inputHandler = new InputHandler();
     private final OutputHandler outputHandler = new OutputHandler();
 
@@ -62,10 +61,7 @@ public class StudyCafePassMachine {
         }
 
         StudyCafeLockerPass lockerPass = lockerPasses.stream()
-                .filter(option ->
-                        option.getPassType() == selectedPass.getPassType()
-                                && option.getDuration() == selectedPass.getDuration()
-                )
+                .filter(selectedPass::isSameDurationAndType)
                 .findFirst()
                 .orElse(null);
 
