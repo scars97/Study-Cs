@@ -51,4 +51,8 @@ public class StudyCafePass {
         return this.passType == lockerPass.getPassType()
             && this.duration == lockerPass.getDuration();
     }
+
+    public boolean isLockerUnavailableFor() {
+        return this.passType.isNotLockerType();
+    }
 }

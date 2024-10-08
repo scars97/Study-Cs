@@ -14,14 +14,7 @@ public class StudyCafePassMachine {
 
     private final InputHandler inputHandler = new InputHandler();
     private final OutputHandler outputHandler = new OutputHandler();
-
-    private final List<StudyCafePass> studyCafePasses;
-    private final List<StudyCafeLockerPass> lockerPasses;
-
-    public StudyCafePassMachine(StudyCafeFileHandler studyCafeFileHandler) {
-        this.studyCafePasses = studyCafeFileHandler.readStudyCafePasses();
-        this.lockerPasses = studyCafeFileHandler.readLockerPasses();
-    }
+    private final StudyCafeFileHandler studyCafeFileHandler = new StudyCafeFileHandler();
 
     public void run() {
         try {
@@ -33,7 +26,7 @@ public class StudyCafePassMachine {
             List<StudyCafePass> passes = showPassesOf(passType);
 
             StudyCafePass selectedPass = inputHandler.getSelectPassFromUser(passes);
-            StudyCafeLockerPass lockerPass = findLockerPassBy(selectedPass);
+            StudyCafeLockerPass lockerPass = selectLockerPass(selectedPass);
 
             outputHandler.showPassOrderSummary(selectedPass, lockerPass);
         } catch (AppException e) {
@@ -50,20 +43,18 @@ public class StudyCafePassMachine {
     }
 
     private List<StudyCafePass> findPassesBy(StudyCafePassType passType) {
+        List<StudyCafePass> studyCafePasses = studyCafeFileHandler.readStudyCafePasses();
         return studyCafePasses.stream()
                 .filter(pass -> pass.getPassType() == passType)
                 .toList();
     }
 
-    private StudyCafeLockerPass findLockerPassBy(StudyCafePass selectedPass) {
-        if (isLockerUnavailableFor(selectedPass.getPassType())) {
+    private StudyCafeLockerPass selectLockerPass(StudyCafePass selectedPass) {
+        if (selectedPass.isLockerUnavailableFor()) {
             return null;
         }
 
-        StudyCafeLockerPass lockerPass = lockerPasses.stream()
-                .filter(selectedPass::isSameDurationAndType)
-                .findFirst()
-                .orElse(null);
+        StudyCafeLockerPass lockerPass = findLockerPassBy(selectedPass);
 
         if (lockerPass != null) {
             outputHandler.askLockerPass(lockerPass);
@@ -77,9 +68,13 @@ public class StudyCafePassMachine {
         return null;
     }
 
-    private boolean isLockerUnavailableFor(StudyCafePassType passType) {
+    private StudyCafeLockerPass findLockerPassBy(StudyCafePass selectedPass) {
+        List<StudyCafeLockerPass> lockerPasses = studyCafeFileHandler.readLockerPasses();
+
         return lockerPasses.stream()
-            .noneMatch(option -> option.getPassType() == passType);
+                .filter(selectedPass::isSameDurationAndType)
+                .findFirst()
+                .orElse(null);
     }
 
 }
