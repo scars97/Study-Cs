@@ -34,6 +34,10 @@ public class IOHandler {
         return inputHandler.getLockerSelection();
     }
 
+    public void showPassOrderSummary(StudyCafePass selectedPass) {
+        outputHandler.showPassOrderSummary(selectedPass, null);
+    }
+
     public void showPassOrderSummary(StudyCafePass selectedPass, StudyCafeLockerPass lockerPass) {
         outputHandler.showPassOrderSummary(selectedPass, lockerPass);
     }
