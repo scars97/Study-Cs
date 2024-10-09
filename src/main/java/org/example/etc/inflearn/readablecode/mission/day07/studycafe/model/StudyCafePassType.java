@@ -21,6 +21,6 @@ public enum StudyCafePassType {
     }
 
     public boolean isNotLockerType() {
-        return isLockerType();
+        return !isLockerType();
     }
 }
