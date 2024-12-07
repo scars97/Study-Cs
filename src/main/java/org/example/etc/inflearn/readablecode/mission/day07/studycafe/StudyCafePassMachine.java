@@ -9,6 +9,7 @@ import org.example.etc.inflearn.readablecode.mission.day07.studycafe.model.Study
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class StudyCafePassMachine {
 
@@ -46,7 +47,7 @@ public class StudyCafePassMachine {
         List<StudyCafePass> studyCafePasses = studyCafeFileHandler.readStudyCafePasses();
         return studyCafePasses.stream()
                 .filter(pass -> pass.getPassType() == passType)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private Optional<StudyCafeLockerPass> selectLockerPass(StudyCafePass selectedPass) {
