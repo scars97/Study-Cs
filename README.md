@@ -44,9 +44,6 @@
 - [퀵 정렬](src/main/java/org/example/Algorithm/퀵%20정렬(Quick%20Sort).md)
 - [DFS & BFS](src/main/java/org/example/Algorithm/DFS%20&%20BFS.md)
 
----
-### Devops
-- [Docker](src/main/java/org/example/Devops/Docker.md)
 
 ---
 ### Coding Test (Baekjoon)
