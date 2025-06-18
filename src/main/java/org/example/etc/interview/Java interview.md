@@ -13,35 +13,36 @@
 - C, C++
 > 런타임 환경 : 애플리케이션이 OS의 시스템 자원에 액세스할 수 있도록 해주는 실행 환경(VM)
 
-![img.png](../Java/img/managed-unmanaged.png)
+![managed-unmanaged.png](img%2Fmanaged-unmanaged.png)
 
 ### Java 접근 제어자에는 무엇이 있는지 설명해주시고 Protect와 Private는 어느 시점에 어떻게 사용될 수 있는지 이야기 해주세요.
 - public, default, private, protect
-- private은 같은 클래스 내에서만 접근이 가능하다
+- private은 클래스 내에서만 접근이 가능하다
   - 클래스 내부 구현을 숨기고 외부에서 접근하지 못하도록 캡슐화할 때 사용된다.
   - private을 사용하여 객체의 상태를 보호하고 데이터 수정을 방지할 수 있다.
-- protect는 같은 패키지 내의 클래스와 클래스를 상속받은 하위 클래스에서 접근이 가능하다.
-- default는 같은 패키지 내의 다른 클래스들에서 접근할 수 있다.
+- protect는 상위 클래스를 상속받은 하위 클래스에서 접근이 가능하다.
+- default는 **같은 패키지 내**의 다른 클래스들에서 접근할 수 있다.
   - 접근 제어자를 명시하지 않은 경우에 적용된다.
 
 ### JVM의 메모리 구조에 대해서 설명해 주세요.
 - Runtime Data area의 메모리 영역을 의미
-- Method Area : 로드된 클래스의 메타데이터(클래스 이름, 부모 클래스 이름, 메서드, 변수)를 저장
+- **Method Area** : 로드된 클래스의 메타데이터(클래스 이름, 부모 클래스 이름, 메서드, 변수)를 저장
   - static 변수, 상수, 메서드 코드가 저장
     - JDK7까지 static 변수들은 Method Area에 저장되었지만 JDK8부터는 Heap Area로 이동
     - 따라서 static 변수도 GC의 대상이다.
-  - 모든 스레드가 공유되는 영역
-- Heap Area : 모든 객체의 인스턴스와 배열이 저장된다.
+  - 모든 스레드에 공유되는 영역
+- **Heap Area** : 모든 객체의 인스턴스와 배열이 저장된다.
   - GC가 관리
-  - 모든 스레드가 공유되는 영역
-- Stack Area : 메서드 호출 시마다 프레임(해당 메서드만을 위한 공간)이 생성된다.
+  - 모든 스레드에 공유되는 영역
+- **Stack Area** : 메서드 호출 시마다 프레임(해당 메서드만을 위한 공간)이 생성된다.
   - 호출된 메서드의 매개변수, 지역변수 등을 임시로 저장
   - 메서드 수행이 끝나면 프레임을 삭제한다.
   - 각 스레드마다 [별도로 할당](src/main/java/org/example/Operating%20System/프로세스&%20스레드.md) 되는 메모리 공간
-- PC Register : 스레드가 시작될 때 생성되며, 각 스레드마다 하나씩 존재한다.
+- **PC Register** : 스레드가 시작될 때 생성되며, 각 스레드마다 하나씩 존재한다.
   - 쓰레드의 문맥 교환(Context Switch) 시 정확한 실행 위치를 유지한다
   - 현재 수행중인 JVM 명령의 주소를 갖는다.
-- Native method stack : 자바 외 언어로 작성된 네이티브 코드를 위한 메모리 영역
+- **Native method stack** : 자바 외 언어로 작성된 네이티브 코드를 위한 메모리 영역
+  - **JNI(Java Native Interface)** : 자바가 다른 언어로 만들어진 애플리케이션과 상호 작용할 수 있는 인터페이스 
 
 ### JVM은 어떤 방식으로 코드를 해석하고 실행시키는지 흐름에 맞게 설명해 주세요. (Java 실행 흐름)
 - 자바 컴파일러(javac)
@@ -50,17 +51,22 @@
 - Class Loader
   - 필요한 클래스를 로딩해서 메모리에 올린다.
   - 런타임 시에 동적으로 클래스를 로드한다.
+  - 로드된 바이트 코드들을 엮어 JVM 메모리 영역인 Runtime Data Area에 배치
 - Runtime Data Area
   - Jvm 메모리 영역으로 자바 애플리케이션을 실행할 때 사용되는 데이터를 적재하는 영역
   - 메모리를 할당 받아 관리하는 영역
   - Method Area, Heap Area, Stack Area, PC Register, Native Method Stack
 - Execution Engine
-  - Class Loader를 통해 Runtime Data Area에 배치된 바이트 코드들을 명령어 단위로 읽어서 실행
-  - 메모리에 로딩된 코드를 해석
-  - 인터프리터 : 바이트코드를 한 줄씩 읽고 실행, 하지만 반복문 등에서 비효율적이다.
-  - JIT 컴파일러 : 자주 실행되는 바이트코드 부분을 네이티브 코드로 변환하여 성능을 향상
-- Garbage Collector
-  - Heap 메모리 영역에 생성된 객체들 중에서 참조되지 않은 객체를 탐색해 제거.
+  - Class Loader를 통해 Runtime Data Area에 배치된 **바이트 코드들을 명령어 단위로 읽어서 실행**
+  - 메모리에 로딩된 코드를 해석하고 실행
+  - **인터프리터**
+    - 바이트코드를 한 줄씩 읽고 실행, 하지만 반복문 등에서 비효율적이다.
+    - JVM은 기본적으로 인터프리터 방식으로 동작
+  - **JIT 컴파일러** 
+    - 자주 실행되는 바이트코드 부분을 네이티브 코드로 변환하여 성능을 향상
+    - 인터프리터 방식을 사용하다 일정 기준이 넘어가면 JIT 컴파일 방식으로 명령어를 실행
+  - **Garbage Collector**
+    - Heap 메모리 영역에 생성된 객체들 중에서 참조되지 않은 객체를 탐색해 제거.
 
 ### Garbage Collector은 무엇인가요?
 - Heap 메모리 영역에서 참조되지 않은 객체를 제거
@@ -74,7 +80,7 @@
   - 살아남은 객체의 age가 1씩 증가
 - age가 기준(jdk의 경우 31)만큼 커지면 Old Generation으로 이동된다.
 
-![img.png](../Java/img/heap-area.png)
+![heap-area.png](img%2Fheap-area.png)
 
 ### GC가 자주 발생된다면 어떤 문제가 있을까요?
 - STW(Stop The World) : GC가 작동되는 동안에는 모든 애플리케이션 스레드가 중단
